@@ -3,8 +3,6 @@ var db = require('./db');
 
 exports.all = function (cb) {
 
-    // console.log('______________ db.get()', db.get());
-
     db.get().collection('tasks').find().toArray(function (err, docs) {
         cb(err, docs);
     })
@@ -33,7 +31,6 @@ exports.update = function (id, data, cb) {
 }
 
 exports.delete = function (id, cb) {
-    console.log('______________ id', id);
     db.get().collection('tasks').deleteOne(
         {_id: ObjectID(id)},
         function (err, result) {
@@ -43,7 +40,6 @@ exports.delete = function (id, cb) {
 }
 
 exports.updateAll = function(id, data, cb) {
-    console.log('______________ id, data, cb', id, data, cb);
     db.get().collection('tasks').updateMany(
         {},
         {$set: data},
