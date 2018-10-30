@@ -35,10 +35,13 @@ app.put('/tasks/:id', TaskController.update);
 app.put('/tasks/all/update', TaskController.updateAll);
 app.delete('/tasks/:id', TaskController.delete);
 
-/*app.post('auth/register', userHandlers.register);
-app.post(userHandlers.sing_in);*/
+var apiRoutes = express.Router();
+// pass all our routes into apiRoutes
+var routes = require("./jwt/routes/routes.js")(apiRoutes);
+// put our routes under /API/
+app.use('/JWT', apiRoutes);
 
 db.connect('mongodb://localhost:27017/data', {useNewUrlParser: true})
 app.listen(4016, () => {
-    console.log('Listening at http://localhost:4016' )
+    console.log('Listening at http://localhost:4016')
 })

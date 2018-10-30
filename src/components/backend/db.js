@@ -13,7 +13,7 @@ exports.connect = function (url, done) {
             if (err) {
                 return done(err);
             }
-            data.db = db.db('test')
+            data.db = db.db('tasks')
         })
 };
 
