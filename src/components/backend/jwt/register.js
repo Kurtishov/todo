@@ -1,4 +1,3 @@
-var MongoClient = require('mongodb').MongoClient;
 var url = require("./config.js").mongodbURL;
 var bcrypt = require('bcrypt');
 var UserModel = require("./models/user.js");

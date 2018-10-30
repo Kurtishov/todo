@@ -1,20 +1,11 @@
-var MongoClient = require('mongodb').MongoClient;
 var bcrypt = require('bcrypt');
 var url = require("./config.js").mongodbURL;
 var secret = require("./config.js").secret;
 var jwt = require('jsonwebtoken');
+var db = require('../db');
 
-var login = function(req,res) {
-    MongoClient.connect(url, function(err, db){
-        if (err) throw err;
-        handle(db,req,res);
-    });
-}
-
-module.exports = login;
-
-function handle( db, req, res) {
-    var usersCollection = db.collection('users');
+function login(req, res) {
+    var usersCollection = db.get().collection('users');
     var password = req.body.password;
     var email = req.body.email;
     var error = null;
@@ -46,3 +37,5 @@ function handle( db, req, res) {
         });
     }
 }
+
+module.exports = login;
